@@ -1,0 +1,649 @@
+<!doctype html> 
+
+<html data-theme="white" class="scroll-smooth" lang="en">
+
+<head>
+
+	<meta charset="UTF-8" />
+
+	<script src="./static/component/css.js"></script>
+
+	<script async src="https://unpkg.com/es-module-shims@1.8.0/dist/es-module-shims.js"></script>
+    <script type="importmap">
+	{
+		"imports": {
+			"three": "https://unpkg.com/three@0.156.0/build/three.module.js",
+			"three/addons/": "https://unpkg.com/three@0.156.0/examples/jsm/"
+		}
+	}
+   </script>
+
+</head>
+
+<body>
+     <!-- ################################################################
+         
+		 								head
+         
+         ##################################################################-->
+   <a class="text-center font-bold hover:text-secondary-content" href="#">
+   <h1  x-data="{
+            startingAnimation: { opacity: 0, scale: 5 },
+            endingAnimation: { opacity: 1, scale: 1, stagger: 0.2, duration: 2, ease: 'expo.out' },
+            addCNDScript: true,
+            animateText() {
+                $el.classList.remove('invisible');
+                gsap.fromTo($el.children, this.startingAnimation, this.endingAnimation);
+            },
+            splitCharactersIntoSpans(element) {
+                text = element.innerHTML;
+                modifiedHTML = [];
+                for (var i = 0; i < text.length; i++) {
+                    attributes = '';
+                    if(text[i].trim()){ attributes = 'class=\'inline-block\''; }
+                    modifiedHTML.push('<span ' + attributes + '>' + text[i] + '</span>');
+                }
+                element.innerHTML = modifiedHTML.join('');
+            },
+            addScriptToHead(url) {
+                script = document.createElement('script');
+                script.src = url;
+                document.head.appendChild(script);
+            }
+        }"
+        x-init="
+            splitCharactersIntoSpans($el);
+            if(addCNDScript){
+                addScriptToHead('https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js');
+            }
+            gsapInterval = setInterval(function(){
+                if(typeof gsap !== 'undefined'){
+                    animateText();
+                    clearInterval(gsapInterval);
+                }
+            }, 5);
+        "
+        class="invisible flex justify-center text-5xl font-bold custom-font mt-16">
+   UniqueEncyclopedia
+   </h1>
+   </a>
+	<!--<script src="./static/component/header.js"></script>-->
+
+     <!-- ################################################################
+         
+		 								content
+         
+         ##################################################################-->
+
+	<div class="flex flex-wrap m-16 text-2xl lg:justify-stretch justify-center bg-base-100 md:text-left text-center">
+
+		<!--<script src="./static/component/content/mysterious places.js"></script>-->
+
+		<div class="flex w-96">
+			<!-- You can open the modal using ID.showModal() method -->
+			<details class="collapse">
+			<summary class="collapse-title font-semibold">mysterious places</summary>
+			<div class="collapse-content text-sm" onclick="lost_cities.showModal()">
+				lost cities
+			</div>
+
+			<dialog id="lost_cities" class="modal">
+			<div class="modal-box">
+				<form method="dialog">
+				<button class="btn btn-sm btn-circle btn-ghost absolute right-1 top-1">✕</button>
+				</form>
+				<div class="card bg-base-100 top-3 shadow-sm">
+				<figure>
+				<img class="rounded-2xl"
+				src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+				alt="Shoes" />
+				</figure>
+				<div class="m-2"></div>
+				<figure class="">
+				<!--<img class="rounded-2xl"
+				src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+				alt="Shoes" />-->
+				<div class="min-w-full"><canvas id="Rabbit" class="rounded-2xl"></canvas></div>
+				</figure>
+				<div class="card-body">
+				<h2 class="card-title">lost cities</h2>
+				<p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+				<div class="card-actions justify-end">
+				<button class="btn btn-primary">Buy Now</button>
+				</div>
+				</div>
+				</div>
+			</div>
+			<form method="dialog" class="modal-backdrop">
+				<button>close</button>
+			</form>
+			</dialog>
+			<script type="module" src="./static/component/3Dcontent/Rabbit.js"></script>
+
+			<div class="collapse-content text-sm" onclick="ancient_city.showModal()">
+				ancient city
+			</div>
+			</details>
+
+			<dialog id="ancient_city" class="modal">
+			<div class="modal-box">
+				<form method="dialog">
+				<button class="btn btn-sm btn-circle btn-ghost absolute right-1 top-1">✕</button>
+				</form>
+				<div class="card bg-base-100 top-3 shadow-sm">
+				<figure>
+				<div class="min-w-full"><canvas id="OrbitControls" class="rounded-2xl"></canvas></div>
+				</figure>
+				<div class="card-body">
+				<h2 class="card-title">ancient city</h2>
+				<p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+				<div class="card-actions justify-end">
+				<button class="btn btn-primary">Buy Now</button>
+				</div>
+				</div>
+				</div>
+			</div>
+			<form method="dialog" class="modal-backdrop">
+				<button>close</button>
+			</form>
+			</dialog>
+			<script type="module" src="./static/component/3Dcontent/OrbitControls.js"></script>
+
+		</div>
+
+		<div class="flex w-96">
+			<!-- You can open the modal using ID.showModal() method -->
+			<details class="collapse">
+			<summary class="collapse-title font-semibold">lost cities</summary>
+			<div class="collapse-content text-sm" onclick="my_modal_2.showModal()">
+				lost cities
+			</div>
+			<div class="collapse-content text-sm" onclick="my_modal_2.showModal()">
+				ancient city
+			</div>
+			</details>
+			<dialog id="my_modal_2" class="modal">
+			<div class="modal-box">
+				<form method="dialog">
+				<button class="btn btn-sm btn-circle btn-ghost absolute right-1 top-1">✕</button>
+				</form>
+				<div class="card bg-base-100 top-3 shadow-sm">
+				<figure>
+					<img
+					src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+					alt="Shoes" />
+				</figure>
+				<div class="card-body">
+					<h2 class="card-title">Card Title</h2>
+					<p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+					<div class="card-actions justify-end">
+					<button class="btn btn-primary">Buy Now</button>
+					</div>
+				</div>
+				</div>
+			</div>
+			<form method="dialog" class="modal-backdrop">
+				<button>close</button>
+			</form>
+			</dialog>
+		</div>
+		<div class="flex w-96">
+			<!-- You can open the modal using ID.showModal() method -->
+			<details class="collapse">
+			<summary class="collapse-title font-semibold">ancient city</summary>
+			<div class="collapse-content text-sm" onclick="my_modal_3.showModal()">
+				lost cities
+			</div>
+			<div class="collapse-content text-sm" onclick="my_modal_3.showModal()">
+				ancient city
+			</div>
+			</details>
+			<dialog id="my_modal_3" class="modal">
+			<div class="modal-box">
+				<form method="dialog">
+				<button class="btn btn-sm btn-circle btn-ghost absolute right-1 top-1">✕</button>
+				</form>
+				<div class="card bg-base-100 top-3 shadow-sm">
+				<figure>
+					<img
+					src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+					alt="Shoes" />
+				</figure>
+				<div class="card-body">
+					<h2 class="card-title">Card Title</h2>
+					<p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+					<div class="card-actions justify-end">
+					<button class="btn btn-primary">Buy Now</button>
+					</div>
+				</div>
+				</div>
+			</div>
+			<form method="dialog" class="modal-backdrop">
+				<button>close</button>
+			</form>
+			</dialog>
+		</div>
+		<div class="flex w-96">
+			<!-- You can open the modal using ID.showModal() method -->
+			<details class="collapse">
+			<summary class="collapse-title font-semibold">wonder of natural</summary>
+			<div class="collapse-content text-sm" onclick="my_modal_4.showModal()">
+				lost cities
+			</div>
+			<div class="collapse-content text-sm" onclick="my_modal_4.showModal()">
+				ancient city
+			</div>
+			</details>
+			<dialog id="my_modal_4" class="modal">
+			<div class="modal-box">
+				<form method="dialog">
+				<button class="btn btn-sm btn-circle btn-ghost absolute right-1 top-1">✕</button>
+				</form>
+				<div class="card bg-base-100 top-3 shadow-sm">
+				<figure>
+					<img
+					src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+					alt="Shoes" />
+				</figure>
+				<div class="card-body">
+					<h2 class="card-title">Card Title</h2>
+					<p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+					<div class="card-actions justify-end">
+					<button class="btn btn-primary">Buy Now</button>
+					</div>
+				</div>
+				</div>
+			</div>
+			<form method="dialog" class="modal-backdrop">
+				<button>close</button>
+			</form>
+			</dialog>
+		</div>
+		<div class="flex w-96">
+			<!-- You can open the modal using ID.showModal() method -->
+			<details class="collapse">
+			<summary class="collapse-title font-semibold">secret places</summary>
+			<div class="collapse-content text-sm" onclick="my_modal_5.showModal()">
+				lost cities
+			</div>
+			<div class="collapse-content text-sm" onclick="my_modal_5.showModal()">
+				ancient city
+			</div>
+			</details>
+			<dialog id="my_modal_5" class="modal">
+			<div class="modal-box">
+				<form method="dialog">
+				<button class="btn btn-sm btn-circle btn-ghost absolute right-1 top-1">✕</button>
+				</form>
+				<div class="card bg-base-100 top-3 shadow-sm">
+				<figure>
+					<img
+					src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+					alt="Shoes" />
+				</figure>
+				<div class="card-body">
+					<h2 class="card-title">Card Title</h2>
+					<p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+					<div class="card-actions justify-end">
+					<button class="btn btn-primary">Buy Now</button>
+					</div>
+				</div>
+				</div>
+			</div>
+			<form method="dialog" class="modal-backdrop">
+				<button>close</button>
+			</form>
+			</dialog>
+		</div>
+		<div class="flex w-96">
+			<!-- You can open the modal using ID.showModal() method -->
+			<details class="collapse">
+			<summary class="collapse-title font-semibold">extream landscapes</summary>
+			<div class="collapse-content text-sm" onclick="my_modal_6.showModal()">
+				lost cities
+			</div>
+			<div class="collapse-content text-sm" onclick="my_modal_6.showModal()">
+				ancient city
+			</div>
+			</details>
+			<dialog id="my_modal_6" class="modal">
+			<div class="modal-box">
+				<form method="dialog">
+				<button class="btn btn-sm btn-circle btn-ghost absolute right-1 top-1">✕</button>
+				</form>
+				<div class="card bg-base-100 top-3 shadow-sm">
+				<figure>
+					<img
+					src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+					alt="Shoes" />
+				</figure>
+				<div class="card-body">
+					<h2 class="card-title">Card Title</h2>
+					<p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+					<div class="card-actions justify-end">
+					<button class="btn btn-primary">Buy Now</button>
+					</div>
+				</div>
+				</div>
+			</div>
+			<form method="dialog" class="modal-backdrop">
+				<button>close</button>
+			</form>
+			</dialog>
+		</div>
+		
+		<!--<div class="flex w-full flex-col mr-6">
+			<div class="divider divider-neutral"></div>
+		</div>-->
+		
+		<div class="flex w-96">
+			<!-- You can open the modal using ID.showModal() method -->
+			<details class="collapse">
+			<summary class="collapse-title font-semibold">extinction animals</summary>
+			<div class="collapse-content text-sm" onclick="my_modal_7.showModal()">
+				lost cities
+			</div>
+			<div class="collapse-content text-sm" onclick="my_modal_7.showModal()">
+				ancient city
+			</div>
+			</details>
+			<dialog id="my_modal_7" class="modal">
+			<div class="modal-box">
+				<form method="dialog">
+				<button class="btn btn-sm btn-circle btn-ghost absolute right-1 top-1">✕</button>
+				</form>
+				<div class="card bg-base-100 top-3 shadow-sm">
+				<figure>
+					<img
+					src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+					alt="Shoes" />
+				</figure>
+				<div class="card-body">
+					<h2 class="card-title">Card Title</h2>
+					<p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+					<div class="card-actions justify-end">
+					<button class="btn btn-primary">Buy Now</button>
+					</div>
+				</div>
+				</div>
+			</div>
+			<form method="dialog" class="modal-backdrop">
+				<button>close</button>
+			</form>
+			</dialog>
+		</div>
+		<div class="flex w-96">
+			<!-- You can open the modal using ID.showModal() method -->
+			<details class="collapse">
+			<summary class="collapse-title font-semibold">poison animals</summary>
+			<div class="collapse-content text-sm" onclick="my_modal_8.showModal()">
+				lost cities
+			</div>
+			<div class="collapse-content text-sm" onclick="my_modal_8.showModal()">
+				ancient city
+			</div>
+			</details>
+			<dialog id="my_modal_8" class="modal">
+			<div class="modal-box">
+				<form method="dialog">
+				<button class="btn btn-sm btn-circle btn-ghost absolute right-1 top-1">✕</button>
+				</form>
+				<div class="card bg-base-100 top-3 shadow-sm">
+				<figure>
+					<img
+					src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+					alt="Shoes" />
+				</figure>
+				<div class="card-body">
+					<h2 class="card-title">Card Title</h2>
+					<p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+					<div class="card-actions justify-end">
+					<button class="btn btn-primary">Buy Now</button>
+					</div>
+				</div>
+				</div>
+			</div>
+			<form method="dialog" class="modal-backdrop">
+				<button>close</button>
+			</form>
+			</dialog>
+		</div>
+		<div class="flex w-96">
+			<!-- You can open the modal using ID.showModal() method -->
+			<details class="collapse">
+			<summary class="collapse-title font-semibold">bioluminescent animal</summary>
+			<div class="collapse-content text-sm" onclick="my_modal_9.showModal()">
+				lost cities
+			</div>
+			<div class="collapse-content text-sm" onclick="my_modal_9.showModal()">
+				ancient city
+			</div>
+			</details>
+			<dialog id="my_modal_9" class="modal">
+			<div class="modal-box">
+				<form method="dialog">
+				<button class="btn btn-sm btn-circle btn-ghost absolute right-1 top-1">✕</button>
+				</form>
+				<div class="card bg-base-100 top-3 shadow-sm">
+				<figure>
+					<img
+					src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+					alt="Shoes" />
+				</figure>
+				<div class="card-body">
+					<h2 class="card-title">Card Title</h2>
+					<p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+					<div class="card-actions justify-end">
+					<button class="btn btn-primary">Buy Now</button>
+					</div>
+				</div>
+				</div>
+			</div>
+			<form method="dialog" class="modal-backdrop">
+				<button>close</button>
+			</form>
+			</dialog>
+		</div>
+		<div class="flex w-96">
+			<!-- You can open the modal using ID.showModal() method -->
+			<details class="collapse">
+			<summary class="collapse-title font-semibold">rare living</summary>
+			<div class="collapse-content text-sm" onclick="my_modal_10.showModal()">
+				lost cities
+			</div>
+			<div class="collapse-content text-sm" onclick="my_modal_10.showModal()">
+				ancient city
+			</div>
+			</details>
+			<dialog id="my_modal_10" class="modal">
+			<div class="modal-box">
+				<form method="dialog">
+				<button class="btn btn-sm btn-circle btn-ghost absolute right-1 top-1">✕</button>
+				</form>
+				<div class="card bg-base-100 top-3 shadow-sm">
+				<figure>
+					<img
+					src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+					alt="Shoes" />
+				</figure>
+				<div class="card-body">
+					<h2 class="card-title">Card Title</h2>
+					<p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+					<div class="card-actions justify-end">
+					<button class="btn btn-primary">Buy Now</button>
+					</div>
+				</div>
+				</div>
+			</div>
+			<form method="dialog" class="modal-backdrop">
+				<button>close</button>
+			</form>
+			</dialog>
+		</div>
+		<div class="flex w-96">
+			<!-- You can open the modal using ID.showModal() method -->
+			<details class="collapse">
+			<summary class="collapse-title font-semibold">deadliest creatures</summary>
+			<div class="collapse-content text-sm" onclick="my_modal_11.showModal()">
+				lost cities
+			</div>
+			<div class="collapse-content text-sm" onclick="my_modal_11.showModal()">
+				ancient city
+			</div>
+			</details>
+			<dialog id="my_modal_11" class="modal">
+			<div class="modal-box">
+				<form method="dialog">
+				<button class="btn btn-sm btn-circle btn-ghost absolute right-1 top-1">✕</button>
+				</form>
+				<div class="card bg-base-100 top-3 shadow-sm">
+				<figure>
+					<img
+					src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+					alt="Shoes" />
+				</figure>
+				<div class="card-body">
+					<h2 class="card-title">Card Title</h2>
+					<p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+					<div class="card-actions justify-end">
+					<button class="btn btn-primary">Buy Now</button>
+					</div>
+				</div>
+				</div>
+			</div>
+			<form method="dialog" class="modal-backdrop">
+				<button>close</button>
+			</form>
+			</dialog>
+		</div>
+		<div class="flex w-96">
+			<!-- You can open the modal using ID.showModal() method -->
+			<details class="collapse">
+			<summary class="collapse-title font-semibold">strangest creatures</summary>
+			<div class="collapse-content text-sm" onclick="my_modal_12.showModal()">
+				lost cities
+			</div>
+			<div class="collapse-content text-sm" onclick="my_modal_12.showModal()">
+				ancient city
+			</div>
+			</details>
+			<dialog id="my_modal_12" class="modal">
+			<div class="modal-box">
+				<form method="dialog">
+				<button class="btn btn-sm btn-circle btn-ghost absolute right-1 top-1">✕</button>
+				</form>
+				<div class="card bg-base-100 top-3 shadow-sm">
+				<figure>
+					<img
+					src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+					alt="Shoes" />
+				</figure>
+				<div class="card-body">
+					<h2 class="card-title">Card Title</h2>
+					<p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+					<div class="card-actions justify-end">
+					<button class="btn btn-primary">Buy Now</button>
+					</div>
+				</div>
+				</div>
+			</div>
+			<form method="dialog" class="modal-backdrop">
+				<button>close</button>
+			</form>
+			</dialog>
+		</div>
+
+		<!--<div class="flex w-full flex-col mr-6">
+			<div class="divider divider-neutral"></div>
+		</div>-->
+
+		<div class="flex w-96">
+			<!-- You can open the modal using ID.showModal() method -->
+			<details class="collapse">
+			<summary class="collapse-title font-semibold">unusual plants</summary>
+			<div class="collapse-content text-sm" onclick="my_modal_13.showModal()">
+				lost cities
+			</div>
+			<div class="collapse-content text-sm" onclick="my_modal_13.showModal()">
+				ancient city
+			</div>
+			</details>
+			<dialog id="my_modal_13" class="modal">
+			<div class="modal-box">
+				<form method="dialog">
+				<button class="btn btn-sm btn-circle btn-ghost absolute right-1 top-1">✕</button>
+				</form>
+				<div class="card bg-base-100 top-3 shadow-sm">
+				<figure>
+					<img
+					src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+					alt="Shoes" />
+				</figure>
+				<div class="card-body">
+					<h2 class="card-title">Card Title</h2>
+					<p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+					<div class="card-actions justify-end">
+					<button class="btn btn-primary">Buy Now</button>
+					</div>
+				</div>
+				</div>
+			</div>
+			<form method="dialog" class="modal-backdrop">
+				<button>close</button>
+			</form>
+			</dialog>
+		</div>
+
+		<div class="flex w-96">
+			<!-- You can open the modal using ID.showModal() method -->
+			<details class="collapse">
+			<summary class="collapse-title font-semibold">relic</summary>
+			<div class="collapse-content text-sm" onclick="my_modal_14.showModal()">
+				lost cities
+			</div>
+			<div class="collapse-content text-sm" onclick="my_modal_14.showModal()">
+				ancient city
+			</div>
+			</details>
+			<dialog id="my_modal_14" class="modal">
+			<div class="modal-box">
+				<form method="dialog">
+				<button class="btn btn-sm btn-circle btn-ghost absolute right-1 top-1">✕</button>
+				</form>
+				<div class="card bg-base-100 top-3 shadow-sm">
+				<figure>
+					<img
+					src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+					alt="Shoes" />
+				</figure>
+				<div class="card-body">
+					<h2 class="card-title">Card Title</h2>
+					<p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+					<div class="card-actions justify-end">
+					<button class="btn btn-primary">Buy Now</button>
+					</div>
+				</div>
+				</div>
+			</div>
+			<form method="dialog" class="modal-backdrop">
+				<button>close</button>
+			</form>
+			</dialog>
+		</div>
+
+		<!--<div class="flex w-full flex-col mr-6">
+			<div class="divider divider-neutral"></div>
+		</div>-->
+
+	</div>
+
+     <!-- ################################################################
+         
+		 								footer
+         
+         ##################################################################-->
+
+	<script src="./static/component/footer.js"></script>
+
+</body>
+</html>
